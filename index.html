@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Atardecer Romántico</title>
+  <title>Para Mercedes 💖</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     * {
@@ -103,8 +103,8 @@
       top: 50%;
       left: -100%;
       transform: translateY(-50%);
-      width: 70%;
-      font-size: 1.5em;
+      width: 80%;
+      font-size: 1.4em;
       background: rgba(255, 255, 255, 0.1);
       padding: 30px;
       color: #fff;
@@ -113,6 +113,7 @@
       animation: slideIn 6s ease 5s forwards;
       z-index: 4;
       border-radius: 10px;
+      line-height: 1.5;
     }
 
     @keyframes slideIn {
@@ -121,7 +122,6 @@
       }
     }
 
-    /* Botón de música */
     #play-btn {
       position: fixed;
       bottom: 20px;
@@ -143,11 +143,10 @@
       background: linear-gradient(145deg, #ff85c1, #ffb6d4);
     }
 
-    /* Responsivo */
     @media screen and (max-width: 768px) {
       .message {
         font-size: 1.1em;
-        width: 85%;
+        width: 90%;
         padding: 20px;
       }
 
@@ -186,22 +185,18 @@
 
     <div class="ground"></div>
 
-    <!-- Imagen pareja -->
     <img class="couple-img" src="https://png.pngtree.com/png-vector/20221214/ourmid/pngtree-love-couple-sitting-on-bench-png-image_6523468.png" alt="Pareja">
 
-    <!-- Mensaje -->
     <div class="message">
-      Es confuso escribir esto, tanto como es hermoso. Así como cualquier momento o todo, lo bello de la vida recae en una definición, o más bien en una persona: tú, mi amor.
+      Mercedes, mi niña, confuso escribir esto, tanto como es hermoso. Así como cualquier momento o todo, lo bello de la vida recae en una definición, o más bien en una persona: tú, mi amor, te amo y te amaré por siempre mi estrellita.
     </div>
   </div>
 
-  <!-- Audio de fondo -->
   <audio id="bg-music" loop preload="auto">
     <source src="musica.mp3" type="audio/mp3">
     Tu navegador no soporta audio.
   </audio>
 
-  <!-- Botón para reproducir música -->
   <button id="play-btn">🎵 Reproducir música</button>
 
   <script>
