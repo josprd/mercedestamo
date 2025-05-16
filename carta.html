@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Carta para Mercedes</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <style>
     * {
       margin: 0;
@@ -11,31 +11,34 @@
       box-sizing: border-box;
     }
 
-    body, html {
+    html, body {
       width: 100%;
       height: 100%;
       font-family: 'Georgia', serif;
       background: linear-gradient(to top, #1b263b, #415a77, #e0aaff);
-      overflow: hidden;
+      overflow-x: hidden;
     }
 
     .sky {
       position: relative;
       width: 100%;
-      height: 100%;
+      min-height: 100vh;
+      padding: 20px 10px;
       background: linear-gradient(to top, #0d1b2a, #1b263b, #415a77);
-      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      flex-direction: column;
     }
 
     .stars {
       position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       z-index: 1;
+      pointer-events: none;
     }
 
     .star {
@@ -54,15 +57,14 @@
 
     .card {
       position: relative;
-      width: 90%;
-      max-width: 700px;
-      height: auto;
+      z-index: 2;
       background: rgba(255, 255, 255, 0.9);
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-      z-index: 5;
-      animation: fadeIn 2.5s ease forwards;
+      padding: 20px;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 500px;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+      animation: fadeIn 2s ease forwards;
       opacity: 0;
       transform: translateY(40px);
     }
@@ -75,30 +77,44 @@
     }
 
     .card p {
-      font-size: 1.2em;
-      line-height: 1.8em;
+      font-size: 1em;
+      line-height: 1.6em;
       color: #222;
       text-align: justify;
     }
 
     .back-button {
-      margin-top: 30px;
-      display: inline-block;
+      display: block;
+      margin: 20px auto 0;
       background-color: #ffafcc;
       color: #000;
       text-decoration: none;
-      padding: 12px 24px;
-      border-radius: 12px;
+      padding: 12px 20px;
+      border-radius: 10px;
+      text-align: center;
+      width: fit-content;
       transition: background 0.3s;
+      font-size: 1em;
     }
 
     .back-button:hover {
       background-color: #ffc8dd;
     }
 
-    @media screen and (max-width: 768px) {
+    @media (max-width: 480px) {
+      .card {
+        padding: 18px;
+        border-radius: 12px;
+      }
+
       .card p {
-        font-size: 1em;
+        font-size: 0.95em;
+        line-height: 1.5em;
+      }
+
+      .back-button {
+        font-size: 0.95em;
+        padding: 10px 18px;
       }
     }
   </style>
@@ -107,7 +123,7 @@
   <div class="sky">
     <div class="stars">
       <script>
-        for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < 70; i++) {
           const star = document.createElement('div');
           star.className = 'star';
           star.style.top = `${Math.random() * 100}%`;
