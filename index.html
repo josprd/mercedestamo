@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Atardecer Romántico</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+      background: linear-gradient(to top, #0d1b2a, #1b263b, #415a77);
+    }
+
+    .sky {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .stars, .shooting-stars {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 2s infinite alternate;
+    }
+
+    @keyframes twinkle {
+      from { opacity: 0.1; }
+      to { opacity: 1; }
+    }
+
+    .shooting-star {
+      position: absolute;
+      width: 120px;
+      height: 2px;
+      background: linear-gradient(90deg, white, transparent);
+      animation: shooting 6s ease-in-out infinite;
+    }
+
+    @keyframes shooting {
+      0% {
+        top: 0;
+        left: 100%;
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      40% {
+        top: 50%;
+        left: -150px;
+        opacity: 0;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+
+    .ground {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 30%;
+      background: linear-gradient(to top, #222, #444);
+      z-index: 2;
+    }
+
+    .couple-img {
+      position: absolute;
+      bottom: 5%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 180px;
+      z-index: 3;
+      animation: float 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes float {
+      0% { transform: translateX(-50%) translateY(0); }
+      100% { transform: translateX(-50%) translateY(-10px); }
+    }
+
+    .message {
+      position: absolute;
+      top: 50%;
+      left: -100%;
+      transform: translateY(-50%);
+      width: 70%;
+      font-size: 1.5em;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      color: #fff;
+      border-left: 5px solid #ff7eaf;
+      backdrop-filter: blur(5px);
+      animation: slideIn 6s ease 5s forwards;
+      z-index: 4;
+      border-radius: 10px;
+    }
+
+    @keyframes slideIn {
+      to {
+        left: 10%;
+      }
+    }
+
+    /* Botón de música */
+    #play-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 12px 18px;
+      background: linear-gradient(145deg, #ff69b4, #ff85c1);
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 50px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      cursor: pointer;
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    #play-btn:hover {
+      transform: scale(1.05);
+      background: linear-gradient(145deg, #ff85c1, #ffb6d4);
+    }
+
+    /* Responsivo */
+    @media screen and (max-width: 768px) {
+      .message {
+        font-size: 1.1em;
+        width: 85%;
+        padding: 20px;
+      }
+
+      .couple-img {
+        width: 140px;
+      }
+
+      #play-btn {
+        padding: 10px 16px;
+        font-size: 0.9em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sky">
+    <div class="stars">
+      <script>
+        for (let i = 0; i < 100; i++) {
+          const star = document.createElement('div');
+          star.className = 'star';
+          star.style.top = `${Math.random() * 100}%`;
+          star.style.left = `${Math.random() * 100}%`;
+          star.style.animationDuration = `${1 + Math.random() * 2}s`;
+          document.querySelector('.stars').appendChild(star);
+        }
+      </script>
+    </div>
+
+    <div class="shooting-stars">
+      <div class="shooting-star" style="top: 20%; left: 90%; animation-delay: 3s;"></div>
+      <div class="shooting-star" style="top: 40%; left: 100%; animation-delay: 6s;"></div>
+      <div class="shooting-star" style="top: 60%; left: 95%; animation-delay: 10s;"></div>
+    </div>
+
+    <div class="ground"></div>
+
+    <!-- Imagen pareja -->
+    <img class="couple-img" src="https://png.pngtree.com/png-vector/20221214/ourmid/pngtree-love-couple-sitting-on-bench-png-image_6523468.png" alt="Pareja">
+
+    <!-- Mensaje -->
+    <div class="message">
+      Es confuso escribir esto, tanto como es hermoso. Así como cualquier momento o todo, lo bello de la vida recae en una definición, o más bien en una persona: tú, mi amor.
+    </div>
+  </div>
+
+  <!-- Audio de fondo -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="musica.mp3" type="audio/mp3">
+    Tu navegador no soporta audio.
+  </audio>
+
+  <!-- Botón para reproducir música -->
+  <button id="play-btn">🎵 Reproducir música</button>
+
+  <script>
+    const btn = document.getElementById('play-btn');
+    const audio = document.getElementById('bg-music');
+
+    btn.addEventListener('click', () => {
+      audio.volume = 0.5;
+      audio.play();
+      btn.textContent = '🎵 Música sonando';
+      btn.disabled = true;
+      btn.style.opacity = 0.6;
+    });
+  </script>
+
+</body>
+</html>
