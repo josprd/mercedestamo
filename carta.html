@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="la">
+<head>
+  <meta charset="UTF-8">
+  <title>Carta para Mercedes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      width: 100%;
+      height: 100%;
+      font-family: 'Georgia', serif;
+      background: linear-gradient(to top, #1b263b, #415a77, #e0aaff);
+      overflow: hidden;
+    }
+
+    .sky {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, #0d1b2a, #1b263b, #415a77);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .stars {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 2s infinite alternate;
+    }
+
+    @keyframes twinkle {
+      from { opacity: 0.2; }
+      to { opacity: 1; }
+    }
+
+    .card {
+      position: relative;
+      width: 90%;
+      max-width: 700px;
+      height: auto;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+      z-index: 5;
+      animation: fadeIn 2.5s ease forwards;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card p {
+      font-size: 1.2em;
+      line-height: 1.8em;
+      color: #222;
+      text-align: justify;
+    }
+
+    .back-button {
+      margin-top: 30px;
+      display: inline-block;
+      background-color: #ffafcc;
+      color: #000;
+      text-decoration: none;
+      padding: 12px 24px;
+      border-radius: 12px;
+      transition: background 0.3s;
+    }
+
+    .back-button:hover {
+      background-color: #ffc8dd;
+    }
+
+    @media screen and (max-width: 768px) {
+      .card p {
+        font-size: 1em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sky">
+    <div class="stars">
+      <script>
+        for (let i = 0; i < 100; i++) {
+          const star = document.createElement('div');
+          star.className = 'star';
+          star.style.top = `${Math.random() * 100}%`;
+          star.style.left = `${Math.random() * 100}%`;
+          star.style.animationDuration = `${1 + Math.random() * 2}s`;
+          document.querySelector('.stars').appendChild(star);
+        }
+      </script>
+    </div>
+
+    <div class="card">
+      <p>
+        <em>Sunt imagines quae non penicillo pinguntur, sed memoria.</em><br><br>
+        Haec figura, inter umbras suaves et arcana rubra amissa, eam mihi recordavit quae in cogitationibus meis cum gratia ambulat… eam quae decus in umeris gerit et susurrum historiae in aspectu.<br><br>
+        Dicunt dies quosdam iterari cum consilio, quasi tempus notas in calendariis relinquere velit. Fortasse ideo hanc imaginem elegi: non solum ob id quod ostendit, sed etiam ob id quod celat.<br><br>
+        Fortuita estne res quod auctor huius operis diem participat cum ea quae artem recentissime in corde meo inspiravit? Forsitan. Aut fortasse non.<br><br>
+        Hoc unum scio: aliquid in hac pictura est quod videre desinere non possum. Sicut in te.
+      </p>
+      <a href="index.html" class="back-button">Volver a la página principal</a>
+    </div>
+  </div>
+</body>
+</html>
