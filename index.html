@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Para Mercedes 💖</title>
+  <title>Atardecer para Mercedes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     * {
@@ -11,18 +11,19 @@
       box-sizing: border-box;
     }
 
-    html, body {
+    body, html {
       width: 100%;
       height: 100%;
       font-family: 'Segoe UI', sans-serif;
       overflow: hidden;
-      background: linear-gradient(to top, #0d1b2a, #1b263b, #415a77);
+      background-color: #0d1b2a;
     }
 
     .sky {
       position: relative;
       width: 100%;
       height: 100%;
+      background: linear-gradient(to top, #0d1b2a, #1b263b, #415a77);
       overflow: hidden;
     }
 
@@ -56,22 +57,10 @@
     }
 
     @keyframes shooting {
-      0% {
-        top: 0;
-        left: 100%;
-        opacity: 0;
-      }
-      10% {
-        opacity: 1;
-      }
-      40% {
-        top: 50%;
-        left: -150px;
-        opacity: 0;
-      }
-      100% {
-        opacity: 0;
-      }
+      0% { top: 0; left: 100%; opacity: 0; }
+      10% { opacity: 1; }
+      40% { top: 50%; left: -150px; opacity: 0; }
+      100% { opacity: 0; }
     }
 
     .ground {
@@ -83,19 +72,13 @@
       z-index: 2;
     }
 
-    .couple-img {
+    .couple {
       position: absolute;
       bottom: 5%;
       left: 50%;
       transform: translateX(-50%);
       width: 180px;
       z-index: 3;
-      animation: float 4s ease-in-out infinite alternate;
-    }
-
-    @keyframes float {
-      0% { transform: translateX(-50%) translateY(0); }
-      100% { transform: translateX(-50%) translateY(-10px); }
     }
 
     .message {
@@ -103,17 +86,16 @@
       top: 50%;
       left: -100%;
       transform: translateY(-50%);
-      width: 80%;
-      font-size: 1.4em;
-      background: rgba(255, 255, 255, 0.1);
+      width: 60%;
+      font-size: 1.5em;
+      background: rgba(0, 0, 0, 0.6);
       padding: 30px;
       color: #fff;
-      border-left: 5px solid #ff7eaf;
-      backdrop-filter: blur(5px);
-      animation: slideIn 6s ease 5s forwards;
+      border-left: 5px solid #fff;
+      animation: slideIn 6s ease 4s forwards;
       z-index: 4;
-      border-radius: 10px;
       line-height: 1.5;
+      border-radius: 10px;
     }
 
     @keyframes slideIn {
@@ -122,47 +104,59 @@
       }
     }
 
-    #play-btn {
+    #carta-btn {
       position: fixed;
-      bottom: 20px;
+      bottom: 80px;
       right: 20px;
       padding: 12px 18px;
-      background: linear-gradient(145deg, #ff69b4, #ff85c1);
+      background: linear-gradient(145deg, #b892ff, #d1b3ff);
       color: white;
       font-weight: bold;
       border: none;
       border-radius: 50px;
+      text-decoration: none;
       box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-      cursor: pointer;
       z-index: 1000;
       transition: all 0.3s ease;
     }
 
-    #play-btn:hover {
+    #carta-btn:hover {
       transform: scale(1.05);
-      background: linear-gradient(145deg, #ff85c1, #ffb6d4);
+      background: linear-gradient(145deg, #d1b3ff, #e6ccff);
+    }
+
+    #musica-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.2);
+      border: none;
+      padding: 10px 15px;
+      color: white;
+      font-size: 1em;
+      border-radius: 30px;
+      backdrop-filter: blur(5px);
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    audio {
+      display: none;
     }
 
     @media screen and (max-width: 768px) {
       .message {
-        font-size: 1.1em;
-        width: 90%;
+        font-size: 1em;
+        width: 80%;
         padding: 20px;
       }
-
-      .couple-img {
-        width: 140px;
-      }
-
-      #play-btn {
-        padding: 10px 16px;
-        font-size: 0.9em;
+      .couple {
+        width: 120px;
       }
     }
   </style>
 </head>
-<body>
-
+<body onload="playMusic()">
   <div class="sky">
     <div class="stars">
       <script>
@@ -185,32 +179,34 @@
 
     <div class="ground"></div>
 
-    <img class="couple-img" src="https://png.pngtree.com/png-vector/20221214/ourmid/pngtree-love-couple-sitting-on-bench-png-image_6523468.png" alt="Pareja">
+    <!-- Imagen de la pareja -->
+    <img src="https://png.pngtree.com/png-vector/20221214/ourmid/pngtree-love-couple-sitting-on-bench-png-image_6523468.png" alt="Pareja" class="couple">
 
     <div class="message">
       Mercedes, mi niña, confuso escribir esto, tanto como es hermoso. Así como cualquier momento o todo, lo bello de la vida recae en una definición, o más bien en una persona: tú, mi amor, te amo y te amaré por siempre mi estrellita.
     </div>
   </div>
 
-  <audio id="bg-music" loop preload="auto">
+  <!-- Audio oculto -->
+  <audio id="bg-music" autoplay loop>
     <source src="musica.mp3" type="audio/mp3">
-    Tu navegador no soporta audio.
+    Tu navegador no soporta audio HTML5.
   </audio>
 
-  <button id="play-btn">🎵 Reproducir música</button>
+  <!-- Botón para ir a la carta -->
+  <a href="carta.html" id="carta-btn">💌 Leer carta</a>
+
+  <!-- Botón de música (decorativo) -->
+  <button id="musica-btn">♪</button>
 
   <script>
-    const btn = document.getElementById('play-btn');
-    const audio = document.getElementById('bg-music');
-
-    btn.addEventListener('click', () => {
+    function playMusic() {
+      const audio = document.getElementById('bg-music');
       audio.volume = 0.5;
-      audio.play();
-      btn.textContent = '🎵 Música sonando';
-      btn.disabled = true;
-      btn.style.opacity = 0.6;
-    });
+      audio.play().catch(() => {
+        console.log("El usuario debe interactuar para iniciar el audio.");
+      });
+    }
   </script>
-
 </body>
 </html>
